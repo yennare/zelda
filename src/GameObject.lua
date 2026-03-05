@@ -56,6 +56,7 @@ function GameObject:update(dt)
 end
 
 function GameObject:render(adjacentOffsetX, adjacentOffsetY)
+
     local frame = self.frame
 
     if self.states and self.states[self.state] and self.states[self.state].frame then
