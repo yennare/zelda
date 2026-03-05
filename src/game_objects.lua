@@ -35,6 +35,12 @@ GAME_OBJECT_DEFS = {
         consumed = false
     },
     ['pot'] = {
-        -- TODO
+        type = 'pot',
+        texture = 'pots',
+        frame = 111, 
+        width = 16,
+        height = 16, 
+        solid = false, 
+        grabbed = false
     }
 }

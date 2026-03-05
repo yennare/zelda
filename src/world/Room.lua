@@ -104,6 +104,9 @@ function Room:generateObjects()
         math.random(MAP_RENDER_OFFSET_Y + TILE_SIZE,
                     VIRTUAL_HEIGHT - (VIRTUAL_HEIGHT - MAP_HEIGHT * TILE_SIZE) + MAP_RENDER_OFFSET_Y - TILE_SIZE - 16)
     )
+    local pot = Projectile(
+        GAME_OBJECT_DEFS['pot'], VIRTUAL_WIDTH / 2, VIRTUAL_HEIGHT / 2
+        )
 
     -- define a function for the switch that will open all doors in the room
     switch.onCollide = function()
@@ -119,8 +122,16 @@ function Room:generateObjects()
         end
     end
 
+    -- pot.onCollide = function()
+    --     if not pot.grabbed then
+    --         pot.grabbed = true
+
+    --     end
+    -- end
+
     -- add to list of objects in scene (only one switch for now)
     table.insert(self.objects, switch)
+    table.insert(self.objects, pot)
         
 end
 

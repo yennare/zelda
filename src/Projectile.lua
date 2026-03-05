@@ -6,16 +6,16 @@
     cogden@cs50.harvard.edu
 ]]
 
-Projectile = Class{}
+Projectile = Class{__includes = GameObject}
 
-function Projectile:init()
-
+function Projectile:init(def)
+    GameObject.init(self, def)
 end
 
 function Projectile:update(dt)
-
+    GameObject.init(self, dt)
 end
 
-function Projectile:render()
-
+function Projectile:render(adjacentOffsetX, adjacentOffsetY)
+    GameObject.render(self)
 end
