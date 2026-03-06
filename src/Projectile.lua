@@ -20,6 +20,13 @@ function Projectile:update(dt)
     if self.grabbed and self.carrier then
         self.x = self.carrier.x  
         self.y = self.carrier.y - 10
+
+        if love.keyboard.wasPressed('e') then
+            self.grabbed = false
+            local throwDir = --inserire metodo per ricavare la direzione del player
+            -- inserire twine di 4 blocchi nella direzione del player
+            -- nel twine inserire eccezioni (if incontra entity, if incontra switch, if incontra muro)
+        end
     end
 
 end
