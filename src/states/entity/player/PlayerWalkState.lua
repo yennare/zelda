@@ -34,7 +34,7 @@ function PlayerWalkState:update(dt)
         self.entity:changeState('idle')
     end
 
-    if love.keyboard.wasPressed('space') then
+    if love.keyboard.wasPressed('space') and not self.entity.carrying then
         self.entity:changeState('swing-sword')
     end
 

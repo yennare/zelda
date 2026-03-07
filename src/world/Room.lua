@@ -125,7 +125,7 @@ function Room:generateObjects()
     end
 
     pot.onCollide = function()
-        if not pot.grabbed then
+        if not pot.grabbed and not pot.thrown then
             pot:grab(self.player)
         end
     end
@@ -206,8 +206,19 @@ function Room:update(dt)
             
 
         elseif not entity.dead then
+
+            for k, object in pairs(self.objects) do
+                if object.thrown and entity:collides(object) then
+                    entity:damage(1)
+                    object:breakPot()
+                    self.remove = true
+                end
+            end
             entity:processAI({room = self}, dt)
             entity:update(dt)
+        -- elseif not entity.dead and entity:collides(pot) then
+        --     entity:damage(1)
+        --     pot:breakPot()
         end
         
         -- collision between the player and entities in the room
@@ -231,7 +242,7 @@ function Room:update(dt)
         end
     end
     for i = #self.objects, 1, -1 do
-        if self.objects[i].consumed then
+        if self.objects[i].consumed or self.objects[i].remove then
             table.remove(self.objects, i)
         end
     end
