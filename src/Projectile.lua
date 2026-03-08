@@ -100,6 +100,8 @@ function Projectile:throw()
 end
 
 function Projectile:grab(player)
+    print('ENTER LIFT STATE')
+    player:changeState('lift-pot')
     self.grabbed = true 
     self.carrier = player
     self.carrier.carrying = true
