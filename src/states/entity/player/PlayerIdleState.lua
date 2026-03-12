@@ -24,7 +24,11 @@ function PlayerIdleState:update(dt)
     if self.entity.busy then
         return
     end
+    if not self.entity.carrying then
+         self.entity:changeAnimation('idle-' .. self.entity.direction)
+    end
     if love.keyboard.wasPressed('space') and not self.entity.carrying then
         self.entity:changeState('swing-sword')
     end
+
 end

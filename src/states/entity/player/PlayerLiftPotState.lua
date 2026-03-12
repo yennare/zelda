@@ -12,6 +12,7 @@ end
 function PlayerLiftPotState:enter()
     -- print('LIFT ENTER')
     self.player.busy = true
+    self.player.carrying = true
 
     self.player:changeAnimation('pot-' .. self.player.direction)
 

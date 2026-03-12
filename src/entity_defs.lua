@@ -116,19 +116,19 @@ ENTITY_DEFS = {
             },
             ['pot-idle-left'] = {
                 frames = {13},
-                texture = 'character-walk'
+                texture = 'character-pot-walk'
             },
             ['pot-idle-right'] = {
                 frames = {5},
-                texture = 'character-walk'
+                texture = 'character-pot-walk'
             },
             ['pot-idle-down'] = {
                 frames = {1},
-                texture = 'character-walk'
+                texture = 'character-pot-walk'
             },
             ['pot-idle-up'] = {
                 frames = {9},
-                texture = 'character-walk'
+                texture = 'character-pot-walk'
             }
         }
     },
