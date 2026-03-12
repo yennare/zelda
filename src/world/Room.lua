@@ -125,8 +125,9 @@ function Room:generateObjects()
     end
 
     pot.onCollide = function()
-        if not pot.grabbed and not pot.thrown then
+        if not pot.grabbed and not pot.thrown and not self.player.carrying then
             pot:grab(self.player)
+            self.player:changeState('lift-pot')
         end
     end
 

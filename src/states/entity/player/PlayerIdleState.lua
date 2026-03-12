@@ -9,6 +9,7 @@
 PlayerIdleState = Class{__includes = EntityIdleState}
 
 function PlayerIdleState:enter(params)
+    -- love.window.showMessageBox("debug", "idle enter")
     EntityIdleState.enter(self, params)
     -- render offset for spaced character sprite (negated in render function of state)
     self.entity.offsetY = 5
@@ -20,7 +21,9 @@ function PlayerIdleState:update(dt)
        love.keyboard.isDown('up') or love.keyboard.isDown('down') then
         self.entity:changeState('walk')
     end
-
+    if self.entity.busy then
+        return
+    end
     if love.keyboard.wasPressed('space') and not self.entity.carrying then
         self.entity:changeState('swing-sword')
     end
