@@ -24,7 +24,7 @@ function Projectile:init(def, x, y)
     self.maxDistance = TILE_SIZE * 4
 
     -- setting up particle system
-    self.psystem = love.graphics.newParticleSystem(gTextures['hearts'], 64)
+    self.psystem = love.graphics.newParticleSystem(gTextures['particle'], 64)
     -- lasts between 0.5-1 seconds seconds
     self.psystem:setParticleLifetime(0.5, 1)
     -- give it an acceleration of anywhere between X1,Y1 and X2,Y2 (0, 0) and (80, 80) here
@@ -82,17 +82,22 @@ function Projectile:update(dt)
            
         end
     end
+    if self.broken and self.psystem:getCount() == 0 then
+        self.remove = true
+    end
 end
 
 function Projectile:render(adjacentOffsetX, adjacentOffsetY)
-    GameObject.render(self, adjacentOffsetX, adjacentOffsetY)
+    if not self.broken then
+        GameObject.render(self, adjacentOffsetX, adjacentOffsetY)
+    end
     love.graphics.draw(self.psystem, adjacentOffsetX, adjacentOffsetY)
 end
 
 function Projectile:breakPot()
 
     self.thrown = false
-    self.remove = true
+    self.broken = true
 
     self.psystem:setColors(
         1, 1, 0.5, 1,
@@ -100,8 +105,9 @@ function Projectile:breakPot()
         0.5, 0.2, 0, 0
         )
     self.psystem:setPosition(self.x + 8, self.y + 8)
-    self.psystem:start()
+
     self.psystem:emit(64)
+    self.psystem:stop()
 
     -- love.window.showMessageBox("debug", "EMIT PARTICLES")
     -- print('EMIT PARTICLES')
